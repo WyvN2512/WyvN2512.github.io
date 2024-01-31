@@ -1,6 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const image1 = document.getElementById("movable-image1");
-    const image2 = document.getElementById("movable-image2");
+    const images = document.querySelectorAll(".movable-image");
 
     // Function to handle dragging for an image
     function handleDragging(image) {
@@ -19,6 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 const x = e.clientX - offsetX;
                 const y = e.clientY - offsetY;
 
+                image.style.position = "absolute";
                 image.style.left = `${x}px`;
                 image.style.top = `${y}px`;
             }
@@ -30,7 +30,6 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // Apply dragging for both images
-    handleDragging(image1);
-    handleDragging(image2);
+    // Apply dragging for all images
+    images.forEach(handleDragging);
 });

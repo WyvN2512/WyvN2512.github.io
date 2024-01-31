@@ -5,16 +5,18 @@ body {
 
 #image-container {
     position: relative;
-    width: 2500px; /* Set the desired width */
-    height: 2000px; /* Set the desired height */
-    border: 1px solid #ccc; /* Optional: Add a border for visualization */
-    background-image: url('Capture\ d’écran\ 2023-07-31\ 210443.png'); /* Replace 'background.jpg' with the path to your background image */
-    background-size: cover; /* Adjust as needed */
-    background-position: center; /* Adjust as needed */
+    width: 100vw;
+    height: 100vh;
+    border: 1px solid #ccc;
+    background-image: url('Village_Creuse_Dediance.png');
+    background-size: 100% 100%;
+    background-position: center;
 }
 
 .movable-image {
     position: absolute;
     cursor: grab;
     user-select: none;
+    width: 100px; /* Set the desired width */
+    height: 100px; /* Set the desired height */
 }
