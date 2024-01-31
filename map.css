@@ -1,0 +1,20 @@
+body {
+    margin: 0;
+    overflow: hidden; /* Hide scrollbars */
+}
+
+#image-container {
+    position: relative;
+    width: 2500px; /* Set the desired width */
+    height: 2000px; /* Set the desired height */
+    border: 1px solid #ccc; /* Optional: Add a border for visualization */
+    background-image: url('Capture\ d’écran\ 2023-07-31\ 210443.png'); /* Replace 'background.jpg' with the path to your background image */
+    background-size: cover; /* Adjust as needed */
+    background-position: center; /* Adjust as needed */
+}
+
+.movable-image {
+    position: absolute;
+    cursor: grab;
+    user-select: none;
+}
