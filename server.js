@@ -8,7 +8,8 @@ const app = express();
 const server = http.createServer(app);
 const io = socketIO(server);
 
-app.use(express.static(__dirname + '/public'));
+app.use(express.static('E:/MapJDR/JDRTest/Public'));
+
 
 io.on('connection', (socket) => {
     console.log('A user connected');
