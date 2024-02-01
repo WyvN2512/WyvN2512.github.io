@@ -14,6 +14,67 @@
         <img src="Jeton_Roger.png" alt="Movable Image 4" class="movable-image" id="movable-image4">
         <img src="Jeton_Soh.png" alt="Movable Image 5" class="movable-image" id="movable-image5">
     </div>
-    <script src="map.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.2.0/socket.io.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const images = document.querySelectorAll(".movable-image");
+            const socket = io();
+
+            // Function to handle dragging for an image
+            function handleDragging(image) {
+                let isDragging = false;
+                let offsetX, offsetY;
+
+                image.addEventListener("mousedown", function (e) {
+                    isDragging = true;
+                    offsetX = e.clientX - image.getBoundingClientRect().left;
+                    offsetY = e.clientY - image.getBoundingClientRect().top;
+                    image.style.cursor = "grabbing";
+
+                    // Emit the initial position to the server
+                    socket.emit('moveImage', {
+                        id: image.id,
+                        x: e.clientX,
+                        y: e.clientY
+                    });
+                });
+
+                document.addEventListener("mousemove", function (e) {
+                    if (isDragging) {
+                        const x = e.clientX - offsetX;
+                        const y = e.clientY - offsetY;
+
+                        image.style.position = "absolute";
+                        image.style.left = `${x}px`;
+                        image.style.top = `${y}px`;
+
+                        // Emit the updated position to the server
+                        socket.emit('moveImage', {
+                            id: image.id,
+                            x,
+                            y
+                        });
+                    }
+                });
+
+                document.addEventListener("mouseup", function () {
+                    isDragging = false;
+                    image.style.cursor = "grab";
+                });
+            }
+
+            // Apply dragging for all images
+            images.forEach(handleDragging);
+
+            // Listen for updates from the server and adjust the image positions
+            socket.on('updateImage', (data) => {
+                const movedImage = document.getElementById(data.id);
+                if (movedImage) {
+                    movedImage.style.left = `${data.x}px`;
+                    movedImage.style.top = `${data.y}px`;
+                }
+            });
+        });
+    </script>
 </body>
 </html>
