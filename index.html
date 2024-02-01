@@ -18,7 +18,9 @@
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             const images = document.querySelectorAll(".movable-image");
-            const socket = io();
+
+            // Connect to the WebSocket server on Glitch
+            const socket = io('https://glitch.com/~jdrmap'); // Replace with your Glitch app URL
 
             // Function to handle dragging for an image
             function handleDragging(image) {
