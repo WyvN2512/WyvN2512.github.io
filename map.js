@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const images = document.querySelectorAll(".movable-image");
 
     // Connect to the WebSocket server
-    const socket = io('https://jdrmap.glitch.me');
+    const socket = io('https://glitch.com/~jdrmap');
 
     // Function to handle dragging for an image
     function handleDragging(image) {
